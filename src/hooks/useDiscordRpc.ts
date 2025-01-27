@@ -75,8 +75,22 @@ const useDiscordRpc = ({ playersRef }: any) => {
           activity.smallImageKey = 'paused';
         }
 
-        if (config.serverType === Server.Jellyfin && config.external.discord.serverImage) {
-          activity.largeImageKey = playQueue.current?.image;
+        if (config.serverType === Server.Jellyfin && config.external.discord.lastfmKey !== false) {
+          const song = playQueue.current;
+
+          const albumInfo = await fetch(
+            `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=${
+              config.external.discord.lastfmKey
+            }&artist=${encodeURIComponent(song.albumArtist)}&album=${encodeURIComponent(
+              song.album
+            )}&format=json`
+          );
+
+          const albumInfoJson = await albumInfo.json();
+
+          if (albumInfoJson.album?.image?.[3]['#text']) {
+            activity.largeImageKey = albumInfoJson.album.image[3]['#text'];
+          }
         }
 
         // Fall back to default icon if not set
@@ -90,14 +104,14 @@ const useDiscordRpc = ({ playersRef }: any) => {
       // Activity can only be set every 15 seconds
       const interval = setInterval(() => {
         setActivity();
-      }, 15e3);
+      }, 5e3);
 
       return () => clearInterval(interval);
     }
     return () => {};
   }, [
     config.external.discord.enabled,
-    config.external.discord.serverImage,
+    config.external.discord.lastfmKey !== false,
     config.serverType,
     discordRpc,
     playQueue,

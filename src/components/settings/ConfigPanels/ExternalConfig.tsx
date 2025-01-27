@@ -73,20 +73,20 @@ const ExternalConfig = ({ bordered }: any) => {
         />
         {config.serverType === Server.Jellyfin && (
           <ConfigOption
-            name={t('Display Song Images')}
+            name={t('Image Support')}
             description={
               <Trans t={t}>
-                Uses the song image returned by your server (only works if your server is publically
-                accessible).
+                Your last.fm API key. Setting this as something other than an empty string will
+                enable image support in the RPC
               </Trans>
             }
             option={
-              <StyledToggle
-                defaultChecked={config.external.discord.serverImage}
-                checked={config.external.discord.serverImage}
-                onChange={(e: boolean) => {
-                  settings.set('discord.serverImage', e);
-                  dispatch(setDiscord({ ...config.external.discord, serverImage: e }));
+              <StyledInput
+                placeholder={t('bfdc1355907860c236c61d21c9565c27 (sample key, get your own!)')}
+                defaultValue={config.external.discord.lastfmKey}
+                onChange={(e: string) => {
+                  settings.set('discord.lastfmKey', e);
+                  dispatch(setDiscord({ ...config.external.discord, lastfmKey: e }));
                 }}
               />
             }

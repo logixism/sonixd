@@ -52,7 +52,7 @@ export interface ConfigPage {
     discord: {
       enabled: boolean;
       clientId: string;
-      serverImage: boolean;
+      lastfmKey: string;
     };
     obs: {
       enabled: boolean;
@@ -199,7 +199,7 @@ const initialState: ConfigPage = {
     discord: {
       enabled: parsedSettings.discord?.enabled || false,
       clientId: parsedSettings.discord?.clientId || '',
-      serverImage: parsedSettings.discord?.serverImage || false,
+      lastfmKey: parsedSettings.discord?.lastfmKey || '',
     },
     obs: {
       enabled: parsedSettings.obs?.enabled || false,

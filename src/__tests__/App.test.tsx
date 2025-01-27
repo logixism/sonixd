@@ -424,7 +424,7 @@ const configState: ConfigPage = {
     discord: {
       enabled: false,
       clientId: '',
-      serverImage: false,
+      lastfmKey: '',
     },
     obs: {
       enabled: false,

@@ -25,7 +25,7 @@ interface Settings {
   discord: {
     enabled: boolean;
     clientId: string;
-    serverImage: boolean;
+    lastfmKey: string;
   };
   obs: {
     enabled: boolean;
@@ -136,7 +136,7 @@ const DEFAULT_SETTINGS: Settings = {
   discord: {
     enabled: false,
     clientId: '923372440934055968',
-    serverImage: false,
+    lastfmKey: '',
   },
   obs: {
     enabled: false,
