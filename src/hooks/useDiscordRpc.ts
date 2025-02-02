@@ -62,8 +62,8 @@ const useDiscordRpc = ({ playersRef }: any) => {
           state: artists || 'Unknown artist',
           largeImageKey: undefined,
           largeImageText: playQueue.current?.album || 'Unknown album',
-          smallImageKey: undefined,
-          smallImageText: player.status,
+          // smallImageKey: undefined,
+          // smallImageText: player.status,
           instance: false,
         };
 
