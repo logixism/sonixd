@@ -59,7 +59,7 @@ const useDiscordRpc = ({ playersRef }: any) => {
 
         const activity: Presence = {
           details: playQueue.current?.title.padEnd(2, ' ') || 'Not playing',
-          state: artists && `By ${artists}`,
+          state: artists || 'Unknown artist',
           largeImageKey: undefined,
           largeImageText: playQueue.current?.album || 'Unknown album',
           smallImageKey: undefined,
