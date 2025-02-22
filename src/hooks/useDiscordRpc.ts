@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import { useEffect, useState } from 'react';
-import RPC, { Presence } from 'discord-rpc';
+import { AutoClient, Presence } from 'discord-auto-rpc';
 import { notifyToast } from '../components/shared/toast';
 import { useAppSelector } from '../redux/hooks';
 import { Artist, Server } from '../types';
@@ -13,12 +13,10 @@ const useDiscordRpc = ({ playersRef }: any) => {
 
   useEffect(() => {
     if (config.external.discord.enabled) {
-      const client = new RPC.Client({ transport: 'ipc' });
+      const client = new AutoClient({ transport: 'ipc' });
 
       if (discordRpc?.client !== config.external.discord.clientId) {
-        client.login({ clientId: config.external.discord.clientId }).catch((err: any) => {
-          notifyToast('error', `${err}`);
-        });
+        client.endlessLogin({ clientId: config.external.discord.clientId });
 
         client.once('connected', () => {
           notifyToast('success', 'Discord RPC is connected');
@@ -62,8 +60,8 @@ const useDiscordRpc = ({ playersRef }: any) => {
           state: artists || 'Unknown artist',
           largeImageKey: undefined,
           largeImageText: playQueue.current?.album || 'Unknown album',
-          // smallImageKey: undefined,
-          // smallImageText: player.status,
+          smallImageKey: undefined,
+          smallImageText: player.status,
           instance: false,
         };
 
@@ -111,7 +109,7 @@ const useDiscordRpc = ({ playersRef }: any) => {
     return () => {};
   }, [
     config.external.discord.enabled,
-    config.external.discord.lastfmKey !== false,
+    config.external.discord.lastfmKey,
     config.serverType,
     discordRpc,
     playQueue,

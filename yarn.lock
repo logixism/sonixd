@@ -4596,6 +4596,22 @@ dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
+discord-auto-rpc@^1.0.17:
+  version "1.0.17"
+  resolved "https://registry.yarnpkg.com/discord-auto-rpc/-/discord-auto-rpc-1.0.17.tgz#83ff30a1eb7f8a7a064a96c22d901b89d8cc0ecd"
+  integrity sha512-ZTK8azvfapMmwjxLAowHuOSglAens7UtBuQnL8b4VDmqzPM0K8ze1A/uPViWkJ8ROEOjZeHoK3zu0jwsQKGavQ==
+  dependencies:
+    "@types/discord-rpc" "^4.0.2"
+    discord-rpc "^3.2.0"
+
+discord-rpc@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/discord-rpc/-/discord-rpc-3.2.0.tgz#8da4e01654fce38e959d70b58708c46ae1d6c8fa"
+  integrity sha512-KJv0EVbGMlr04HoG6f5b3wD7X9kSHzQ2Ed2qfHSDvYJ1MkE8RbCQmMcQQrSvAxpfsqZgUjB/bsfi/mjyicCH+A==
+  dependencies:
+    node-fetch "^2.6.1"
+    ws "^7.3.1"
+
 discord-rpc@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/discord-rpc/-/discord-rpc-4.0.1.tgz#a89aa04a048aa83ad4f347d53fa0162501eae0d8"
